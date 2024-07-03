@@ -8,14 +8,13 @@ import FadeLoader from 'react-spinners/FadeLoader';
 const BidProducts = () => {
   const location = useLocation();
   const [count, setCount] = React.useState(0);
-  let data = {  
+  const [loading, setLoading] = React.useState(true);
+  const [details, setDetails] = React.useState({});
+
+  const data = React.useMemo(() => ({
     item_id: location.state.id,
     base_price: location.state.basePrice
-  };
-
-  let [loading, setLoading] = React.useState(true);
-
-  const [details, setDetails] = React.useState({});
+  }), [location.state.id, location.state.basePrice]);
 
   React.useEffect(() => {
     axios
@@ -25,7 +24,8 @@ const BidProducts = () => {
         setLoading(false);
       })
       .catch((error) => console.log(error));
-  }, [count,data]);
+  }, [count, data]);
+
 
   return (
     <Container
