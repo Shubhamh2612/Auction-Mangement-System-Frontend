@@ -122,7 +122,7 @@ const BidProductCard = (props) => {
             <CardMedia
               component="img"
               height="200"
-              image={props.highestBidder == 'null' ? unsold : sold}
+              image={props.highestBidder === 'null' ? unsold : sold}
               alt=""
             />
           )}
